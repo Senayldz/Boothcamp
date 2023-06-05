@@ -1,2 +1,2 @@
-# Boothcamp
-Google Oyun Akademisi Boothcamp
+# Bootcamp
+Google Oyun Akademisi Bootcamp
