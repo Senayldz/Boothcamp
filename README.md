@@ -3,7 +3,7 @@ Google Oyun Akademisi Bootcamp
 
 **TEAM NAME**
 
-`rgb(51,158,179)`TEAM UNITY 53
+TEAM UNITY 53
 
 **INFO ABOUT GAME**
 
