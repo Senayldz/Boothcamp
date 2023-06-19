@@ -114,19 +114,24 @@ Hero with Special Powers includes:
 
 ` `Sprint Board Final
 
-![](Aspose.Words.a5899688-40b7-4f58-baa7-ee826576e03f.001.png)
+![image](https://github.com/Senayldz/Bootcamp/assets/120721647/bd0e512a-053b-449d-a593-55fce6756cef)
+
 
 `                                                                                         `First Craft
 
-![](Aspose.Words.a5899688-40b7-4f58-baa7-ee826576e03f.002.png)
+![image](https://github.com/Senayldz/Bootcamp/assets/120721647/618a12ae-eb58-4fe9-a56d-b7a39b0dd5f8)
+
 
 \* GAME STATUS: Screen Shots:  
 
 Stage1
 
-![D:\Bootcamp Sprint\Ekran görüntüsü 2023-06-15 192221.png](Aspose.Words.a5899688-40b7-4f58-baa7-ee826576e03f.003.png)
+![image](https://github.com/Senayldz/Bootcamp/assets/120721647/1f385051-ccf1-4ed8-85ed-a6b401de5483)
 
-![D:\Bootcamp Sprint\Ekran görüntüsü 2023-06-15 202357.png](Aspose.Words.a5899688-40b7-4f58-baa7-ee826576e03f.004.png)   ![C:\Users\Ayşenur TURAN\AppData\Local\Microsoft\Windows\INetCache\Content.Word\Product2.png](Aspose.Words.a5899688-40b7-4f58-baa7-ee826576e03f.005.png)
+
+![image](https://github.com/Senayldz/Bootcamp/assets/120721647/e987b648-d95f-4512-aac7-b8ac6bfa5673)
+   ![image](https://github.com/Senayldz/Bootcamp/assets/120721647/4c082802-ab78-4ea4-b2f2-0af9da0ca05a)
+
 
 Stage 2                                                                                          Stage3
 
