@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] float groundCheckRadius;
 
-    public LayerMask groundLayer;
+    private LayerMask groundLayer;
 
     public GameObject groundCheck;
 
@@ -21,6 +21,10 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody playerRb;
 
+    private void Awake()
+    {
+        groundLayer = LayerMask.GetMask("Draggable", "Ground");
+    }
     void Start()
     {
         playerAnim = GetComponent<Animator>();

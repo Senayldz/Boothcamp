@@ -8,15 +8,20 @@ public class PlayerDragController : MonoBehaviour
 
     private Camera mainCam;
 
+    Animator playerAnim;
+
     private GameObject heldObject;
     private Rigidbody heldObjectRb;
 
     private LayerMask draggableLayer;
 
+    bool isSpellCasted;
+
     private void Awake()
     {
         mainCam = Camera.main;
         draggableLayer = LayerMask.GetMask("Draggable");
+        playerAnim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -32,11 +37,11 @@ public class PlayerDragController : MonoBehaviour
                 {
                     PickupObject(hit.transform.gameObject);
                 }
-                    
-            }         
+
+            }
         }
         // Is an object currently being hold?
-        if (heldObject != null) 
+        if (heldObject != null)
         {
             if (Input.GetMouseButtonUp(0))
             {
@@ -45,13 +50,14 @@ public class PlayerDragController : MonoBehaviour
             else
             {
                 MoveObject();
-                // Left Rotate
-                if(Input.GetKey(KeyCode.Q))
+
+
+                if (Input.GetKey(KeyCode.Q))
                 {
                     RotateObject(1);
                 }
                 // Right Rotate
-                if(Input.GetKey(KeyCode.E))
+                if (Input.GetKey(KeyCode.E))
                 {
                     RotateObject(-1);
                 }
@@ -61,13 +67,21 @@ public class PlayerDragController : MonoBehaviour
 
     private void PickupObject(GameObject pickedObject)
     {
-        if (pickedObject.GetComponent<Rigidbody>()) 
+        if (pickedObject.GetComponent<Rigidbody>())
         {
             heldObjectRb = pickedObject.GetComponent<Rigidbody>();
             heldObjectRb.useGravity = false;
             heldObjectRb.drag = 10;
             heldObjectRb.constraints = RigidbodyConstraints.FreezeRotation;
             heldObject = pickedObject;
+
+
+            if (!isSpellCasted)
+            {
+                playerAnim.SetTrigger("spell");
+            }
+
+
         }
         else
         {
@@ -80,6 +94,7 @@ public class PlayerDragController : MonoBehaviour
         heldObjectRb.useGravity = true;
         heldObjectRb.drag = 1;
         heldObjectRb.constraints = RigidbodyConstraints.None;
+        isSpellCasted = true;
 
         heldObject = null;
     }
@@ -90,7 +105,7 @@ public class PlayerDragController : MonoBehaviour
         mouseScreenPosition.z = -mainCam.transform.position.z;
 
         Vector3 mouseWorldPosition = mainCam.ScreenToWorldPoint(mouseScreenPosition);
-        
+
         if (Vector3.Distance(heldObject.transform.position, mouseWorldPosition) > 0.1f)
         {
             Vector3 moveDirection = mouseWorldPosition - heldObject.transform.position;
