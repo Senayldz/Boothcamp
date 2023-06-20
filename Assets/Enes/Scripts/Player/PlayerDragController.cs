@@ -8,14 +8,12 @@ public class PlayerDragController : MonoBehaviour
 
     private Camera mainCam;
 
-    Animator playerAnim;
+    private Animator playerAnim;
 
     private GameObject heldObject;
     private Rigidbody heldObjectRb;
 
     private LayerMask draggableLayer;
-
-    bool isSpellCasted;
 
     private void Awake()
     {
@@ -75,13 +73,7 @@ public class PlayerDragController : MonoBehaviour
             heldObjectRb.constraints = RigidbodyConstraints.FreezeRotation;
             heldObject = pickedObject;
 
-
-            if (!isSpellCasted)
-            {
-                playerAnim.SetTrigger("spell");
-            }
-
-
+            playerAnim.SetTrigger("dragStart");
         }
         else
         {
@@ -94,8 +86,8 @@ public class PlayerDragController : MonoBehaviour
         heldObjectRb.useGravity = true;
         heldObjectRb.drag = 1;
         heldObjectRb.constraints = RigidbodyConstraints.None;
-        isSpellCasted = true;
 
+        playerAnim.SetTrigger("dragFinish");
         heldObject = null;
     }
 
