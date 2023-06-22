@@ -1,32 +1,26 @@
 using UnityEngine;
 
-[RequireComponent (typeof(EnemyState))]
+
 public class BearController : EnemyController
 {
     [Header("Navigation")]
-    [SerializeField] private float firstPatrolPoint;
-    [SerializeField] private float secondPatrolPoint;
-
-    private EnemyState enemyState;
+    [SerializeField] private float[] patrolPoints;
+    [SerializeField] private float timeDelay;
 
     private void Start()
     {
-        enemyState = GetComponent<EnemyState>();
+        
     }
 
     private void Update()
     {
-        if (enemyState.enemyState == EnemyState.State.Patrol)
+
+        if (enemyState.state == EnemyState.State.Patrol)
         {
-            Patrol(firstPatrolPoint, secondPatrolPoint);
+            Patrol(patrolPoints, timeDelay);
         }
 
-        if (enemyState.enemyState == EnemyState.State.Encounter)
-        {
-            Encounter();
-        }
-
-        if (enemyState.enemyState == EnemyState.State.Attack)
+        if (enemyState.state == EnemyState.State.Attack)
         {
             Attack();
         }
@@ -42,9 +36,9 @@ public class BearController : EnemyController
         throw new System.NotImplementedException();
     }
 
-    protected override void Patrol(float firstPatrolPoint, float secondPatrolPoint)
+    protected override void Patrol(float[] patrolPoints, float timeDelay)
     {
-        base.Patrol(firstPatrolPoint, secondPatrolPoint);
+        base.Patrol(patrolPoints, timeDelay);
     }
 
 }
