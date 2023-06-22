@@ -15,6 +15,8 @@ public class PlayerDragController : MonoBehaviour
 
     private LayerMask draggableLayer;
 
+    private bool isPickedUp;
+    public bool IsPickedUp { get { return isPickedUp; } }
     private void Awake()
     {
         mainCam = Camera.main;
@@ -72,6 +74,7 @@ public class PlayerDragController : MonoBehaviour
             heldObjectRb.drag = 10;
             heldObjectRb.constraints = RigidbodyConstraints.FreezeRotation;
             heldObject = pickedObject;
+            isPickedUp = true;
 
             playerAnim.SetTrigger("dragStart");
         }
@@ -89,6 +92,7 @@ public class PlayerDragController : MonoBehaviour
 
         playerAnim.SetTrigger("dragFinish");
         heldObject = null;
+        isPickedUp = false;
     }
 
     private void MoveObject()
