@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
         facingRight = true;
+        isGrounded = true;
 
     }
 
@@ -40,8 +41,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Jump();
         PreventInfiniteJump();
+        Jump();
     }
 
 
@@ -66,9 +67,11 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
+        
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             playerRb.velocity = new Vector3(playerRb.velocity.x, jumpForce, 0);
+
             
         }
         playerAnim.SetBool("grounded", isGrounded);
@@ -103,5 +106,5 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.transform.position, groundCheckRadius);
     }
 
-
+    
 }
