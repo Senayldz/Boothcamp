@@ -1,11 +1,12 @@
- using UnityEngine;
+using UnityEngine;
 
-public class EnemyState : MonoBehaviour
+public class EnemyState : MonoBehaviour 
 {
     public enum State
     {
+        Idle,
         Patrol,
-        Encounter,
+        Chase,
         Attack
     }
 
