@@ -14,12 +14,15 @@ public class PlayerController : MonoBehaviour
 
     bool facingRight;
     bool isGrounded;
+    bool isDragging;
 
     Collider[] groundcollision;
 
     Animator playerAnim;
 
     Rigidbody playerRb;
+
+    PlayerDragController dragControl;
 
     private void Awake()
     {
@@ -29,7 +32,9 @@ public class PlayerController : MonoBehaviour
     {
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
+        dragControl = GetComponent<PlayerDragController>();
         facingRight = true;
+        isGrounded = true;
 
     }
 
@@ -40,8 +45,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Jump();
         PreventInfiniteJump();
+        MovementWhileDragging();
+        Jump();
     }
 
 
@@ -66,9 +72,11 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
+        
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             playerRb.velocity = new Vector3(playerRb.velocity.x, jumpForce, 0);
+
             
         }
         playerAnim.SetBool("grounded", isGrounded);
@@ -97,11 +105,24 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
     }
+    
+    void MovementWhileDragging()
+    {
+        if (dragControl.IsPickedUp)
+        {
+            playerRb.constraints = RigidbodyConstraints.FreezeAll;
+        }
+        else
+        {
+            playerRb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+           
+        }
+    }
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.transform.position, groundCheckRadius);
     }
 
-
+    
 }
