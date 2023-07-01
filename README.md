@@ -106,7 +106,7 @@ Hero with Special Powers includes:
 
 ` `Overall, there is a backlog of 500 points that need to be completed throughout the project. When divided into 3 sprints, it was decided that the first sprint should start with at least 100 points.
 
-\***DAILY SCRUM:** Due to time constraints, it has been decided to conduct Daily Scrum meetings via WhatsApp. An example of a Daily Scrum meeting is shared by us in the Readme file as a JPEG or Word document [**Sprint 1 Daily Scrum Chats**](Sprint%201/DailyScrum.docx)
+\***DAILY SCRUM:** Due to time constraints, it has been decided to conduct Daily Scrum meetings via WhatsApp. An example of a Daily Scrum meeting is shared by us in the Readme file as a JPEG or Word document [**Sprint 2 Daily Scrum Chats**](Sprint%202/DailyScrum2.docx)
 **
 
 
@@ -157,3 +157,57 @@ SPRINT NOTES:
 **Product Backlog URL**
 
 https://trello.com/b/AQu1OwCJ/bootcamp-agile-project
+
+**SPRINT 2**
+
+\***THE ESTİMATED SCORE TO BE COMPLETED WITHIN THE SPRINT:** 200 Point
+
+
+\***DAILY SCRUM:** Due to time constraints, it has been decided to conduct Daily Scrum meetings via WhatsApp and Discord. An example of a Daily Scrum meeting is shared by us in the Readme file as a JPEG or Word document [**Sprint 2 Daily Scrum Chats**](Sprint%202/DailyScrum2.docx)
+**
+
+
+\***SPRINT BOARD UPDATE:** Sprint board screenshots: 
+
+` `Sprint Board Final
+![ProjectBacklog](https://github.com/Senayldz/Bootcamp/assets/120721647/bcc9c87a-4a12-404a-bd59-b71690ae8385)
+
+
+
+`                                                                                         `First Craft
+![ProjectBacklog1](https://github.com/Senayldz/Bootcamp/assets/120721647/4a944623-fc39-44f0-b8c4-4ee46b09b732)
+
+
+
+\*** GAME STATUS: Screen Shots:**  
+![1](https://github.com/Senayldz/Bootcamp/assets/120721647/082ca988-170d-4bcc-90ac-19a2ec015cf8)
+![2](https://github.com/Senayldz/Bootcamp/assets/120721647/d32773d5-4df5-4f07-98e5-088b7f815d1f)
+![3](https://github.com/Senayldz/Bootcamp/assets/120721647/beb20469-77cb-46fe-88b0-2f848e26c320)
+![4](https://github.com/Senayldz/Bootcamp/assets/120721647/6e757de8-04c4-4048-863c-c50431157c28)
+![5](https://github.com/Senayldz/Bootcamp/assets/120721647/226a0c02-ff79-4b72-8433-b54a20836853)
+![6](https://github.com/Senayldz/Bootcamp/assets/120721647/a303c9b8-6ee6-42f6-99b8-559d0048f336)
+![7](https://github.com/Senayldz/Bootcamp/assets/120721647/2f9ba7f2-a365-4d67-8519-f5070d1520f3)
+
+
+\*** SPRINT REVİEW:** the objects used on the stage not being low-poly and their excessive usage can lead to low FPS (frames per second).Optimization methods will be needed in the later stages of the product to address this issue.Focusing on optimization is essential. Sprint Review participants:Enes Yaz,Yağız Türk,Sena Yıldız,Hazar Karayaman,Ayşenur Turan
+
+\*** SPRINT RETROSPECTIVE:**
+
+- "The product development speed has decreased, and I think it is due to coinciding with the holiday season. Therefore, we may need to allocate more time in the upcoming days.The product development speed has decreased
+- "The deadline is approaching, and There are a lot of work to do, speed up. "
+- "It is important to prioritize and collaborate more to speed up."
+- "The team needs to continue working at an accelerated pace for a better process in the future."
+  
+**SPRINT NOTES**:
+
+- In backlog;
+
+**Platform Colors In The Backlog:** distinguishing which the team member did.
+
+**The Title Colors**: describe the theme of the sprints, while
+
+- Sprints were drafted on **Github Project**. In the next stage, it was transferred to **Trello** and continued to be studied.
+
+**Product Backlog URL**
+https://trello.com/b/AQu1OwCJ/bootcamp-agile-project
+
