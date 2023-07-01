@@ -117,7 +117,7 @@ Hero with Special Powers includes:
 ![image](https://github.com/Senayldz/Bootcamp/assets/120721647/bd0e512a-053b-449d-a593-55fce6756cef)
 
 
-`                                                                                         `First Craft
+` `First Craft
 
 ![image](https://github.com/Senayldz/Bootcamp/assets/120721647/618a12ae-eb58-4fe9-a56d-b7a39b0dd5f8)
 
@@ -174,7 +174,7 @@ https://trello.com/b/AQu1OwCJ/bootcamp-agile-project
 
 
 
-`                                                                                         `First Craft
+` `First Craft
 ![ProjectBacklog1](https://github.com/Senayldz/Bootcamp/assets/120721647/4a944623-fc39-44f0-b8c4-4ee46b09b732)
 
 
@@ -183,15 +183,14 @@ https://trello.com/b/AQu1OwCJ/bootcamp-agile-project
 ![1](https://github.com/Senayldz/Bootcamp/assets/120721647/082ca988-170d-4bcc-90ac-19a2ec015cf8)
 ![2](https://github.com/Senayldz/Bootcamp/assets/120721647/d32773d5-4df5-4f07-98e5-088b7f815d1f)
 ![3](https://github.com/Senayldz/Bootcamp/assets/120721647/beb20469-77cb-46fe-88b0-2f848e26c320)
-![4](https://github.com/Senayldz/Bootcamp/assets/120721647/6e757de8-04c4-4048-863c-c50431157c28)
-![5](https://github.com/Senayldz/Bootcamp/assets/120721647/226a0c02-ff79-4b72-8433-b54a20836853)
+![4](https://github.com/Senayldz/Bootcamp/assets/120721647/ef573f8a-df64-45f2-af7c-6290da83bd72)
+![5](https://github.com/Senayldz/Bootcamp/assets/120721647/ed2d7488-1528-4f56-8099-6bb1335baf0e)
 ![6](https://github.com/Senayldz/Bootcamp/assets/120721647/a303c9b8-6ee6-42f6-99b8-559d0048f336)
 ![7](https://github.com/Senayldz/Bootcamp/assets/120721647/2f9ba7f2-a365-4d67-8519-f5070d1520f3)
 
+**SPRINT REVİEW:** the objects used on the stage not being low-poly and their excessive usage can lead to low FPS (frames per second).Optimization methods will be needed in the later stages of the product to address this issue.Focusing on optimization is essential. Sprint Review participants:Enes Yaz,Yağız Türk,Sena Yıldız,Hazar Karayaman,Ayşenur Turan
 
-\*** SPRINT REVİEW:** the objects used on the stage not being low-poly and their excessive usage can lead to low FPS (frames per second).Optimization methods will be needed in the later stages of the product to address this issue.Focusing on optimization is essential. Sprint Review participants:Enes Yaz,Yağız Türk,Sena Yıldız,Hazar Karayaman,Ayşenur Turan
-
-\*** SPRINT RETROSPECTIVE:**
+**SPRINT RETROSPECTIVE:**
 
 - "The product development speed has decreased, and I think it is due to coinciding with the holiday season. Therefore, we may need to allocate more time in the upcoming days.The product development speed has decreased
 - "The deadline is approaching, and There are a lot of work to do, speed up. "
