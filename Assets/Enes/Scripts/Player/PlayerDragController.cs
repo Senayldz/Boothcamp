@@ -72,7 +72,7 @@ public class PlayerDragController : MonoBehaviour
             heldObjectRb = pickedObject.GetComponent<Rigidbody>();
             heldObjectRb.useGravity = false;
             heldObjectRb.drag = 10;
-            heldObjectRb.constraints = RigidbodyConstraints.FreezeRotation;
+            heldObjectRb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
             heldObject = pickedObject;
             isPickedUp = true;
 

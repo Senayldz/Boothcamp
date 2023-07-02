@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float playerSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] float groundCheckRadius;
+    [SerializeField] float turnSpeed;
+
+    private GameObject draggableObject;
 
     private LayerMask groundLayer;
 
@@ -33,6 +36,7 @@ public class PlayerController : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
         dragControl = GetComponent<PlayerDragController>();
+        draggableObject = GameObject.FindGameObjectWithTag("Draggable");
         facingRight = true;
         isGrounded = true;
 
@@ -48,6 +52,15 @@ public class PlayerController : MonoBehaviour
         PreventInfiniteJump();
         MovementWhileDragging();
         Jump();
+        if (dragControl.IsPickedUp && transform.position.x > draggableObject.transform.position.x && facingRight )
+        {
+            Flip();
+        }
+
+        else if (dragControl.IsPickedUp && transform.position.x < draggableObject.transform.position.x && !facingRight)
+        {
+            Flip();
+        }
     }
 
 
@@ -72,12 +85,12 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        
+
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             playerRb.velocity = new Vector3(playerRb.velocity.x, jumpForce, 0);
 
-            
+
         }
         playerAnim.SetBool("grounded", isGrounded);
 
@@ -105,7 +118,7 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
     }
-    
+
     void MovementWhileDragging()
     {
         if (dragControl.IsPickedUp)
@@ -115,7 +128,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             playerRb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
-           
+
         }
     }
 
@@ -125,4 +138,5 @@ public class PlayerController : MonoBehaviour
     }
 
     
+
 }
