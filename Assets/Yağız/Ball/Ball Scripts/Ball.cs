@@ -6,14 +6,21 @@ public class Ball : MonoBehaviour
 {
     GameObject player;
     [SerializeField] float rotateSpeed = 180f;
+   
+    
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    
+    void FixedUpdate()
     {
-        transform.RotateAround(player.transform.position, Vector3.up, rotateSpeed * Time.deltaTime); ;
+        transform.RotateAround(player.transform.position, Vector3.up, rotateSpeed * Time.deltaTime);
+
     }
+
+   
 }

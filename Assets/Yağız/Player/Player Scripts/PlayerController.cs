@@ -16,8 +16,9 @@ public class PlayerController : MonoBehaviour
     public GameObject groundCheck;
 
     bool facingRight;
+    public bool FacingRight { get { return facingRight; } }
     bool isGrounded;
-    bool isDragging;
+    
 
     Collider[] groundcollision;
 
@@ -96,7 +97,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void Flip()
+    public void Flip()
     {
         facingRight = !facingRight;
 
@@ -135,6 +136,7 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.transform.position, groundCheckRadius);
+        
     }
 
     
