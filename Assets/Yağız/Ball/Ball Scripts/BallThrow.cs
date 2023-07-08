@@ -26,7 +26,7 @@ public class BallThrow : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetMouseButtonDown(1) && readyToThrow )
         {
