@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Aysenur/UI UX/Scene/Title Screen.unity
+    guid: 78c7f873c300fd745b09fa78df8e3c73
+  - enabled: 1
+    path: Assets/Aysenur/Scenes/World of Kachujin.unity
+    guid: 6753e7bf427ac9b48b7d09b9d9af531a
   m_configObjects: {}
