@@ -11,10 +11,13 @@ public class BallThrow : MonoBehaviour
     [SerializeField] float ThrowCooldown;
     [SerializeField] float ThrowForce;
     [SerializeField] float ThrowUpwardForce;
+    [SerializeField] float offsetY = 0.085f;
 
     PlayerController playercontrol;
 
     Animator playeranim;
+
+    Rigidbody playerRb;
 
     bool readyToThrow;
 
@@ -23,12 +26,13 @@ public class BallThrow : MonoBehaviour
         readyToThrow = true;
         playercontrol = GetComponent<PlayerController>();
         playeranim = GetComponent<Animator>();
+        playerRb = GetComponent<Rigidbody>();
     }
 
 
     void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(1) && readyToThrow )
+        if (Input.GetMouseButton(1) && readyToThrow )
         {
             Throw();
         }
@@ -42,6 +46,7 @@ public class BallThrow : MonoBehaviour
         if (projectile != null)
         {
             projectile.transform.position = attackPoint.position;
+            projectile.transform.rotation = Camera.main.transform.rotation;
             projectile.SetActive(true);
         }
 
@@ -56,13 +61,26 @@ public class BallThrow : MonoBehaviour
            
             Vector3 forceDirection = (hit.point - attackPoint.position).normalized;
             forceDirection.z = 0;
+            forceDirection.y = forceDirection.y + offsetY;
+            Debug.Log(forceDirection);
             if ((hit.point.x > transform.position.x && !playercontrol.FacingRight) | (hit.point.x < transform.position.x && playercontrol.FacingRight))
             {
                 projectile.SetActive(false);
             }
             playeranim.SetTrigger("throwing");
-            Vector3 forceToAdd = forceDirection * ThrowForce + transform.up * ThrowUpwardForce;
-            projectileRb.AddForce(forceToAdd,ForceMode.Impulse);
+           Vector3 forceToAdd = forceDirection * ThrowForce;
+            
+
+            // Relative Velocity
+            if (playercontrol.moveX != 0)
+            {
+                projectileRb.velocity = forceToAdd + new Vector3(playercontrol.moveX * playercontrol.playerSpeed, playerRb.velocity.y, 0);
+            }
+            else
+            {
+                projectileRb.velocity = forceToAdd;
+            }
+            
 
 
         }

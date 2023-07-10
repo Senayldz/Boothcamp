@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float playerSpeed;
+    public float playerSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] float groundCheckRadius;
     [SerializeField] float turnSpeed;
@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public GameObject groundCheck;
 
     bool facingRight;
+
+    public float moveX;
     public bool FacingRight { get { return facingRight; } }
     bool isGrounded;
     
@@ -67,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
-        float moveX = Input.GetAxis("Horizontal");
+        moveX = Input.GetAxis("Horizontal");
         playerAnim.SetFloat("speed", Mathf.Abs(moveX));
 
         playerRb.velocity = new Vector3(moveX * playerSpeed, playerRb.velocity.y, 0);
