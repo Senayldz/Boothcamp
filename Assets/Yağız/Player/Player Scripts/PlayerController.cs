@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private GameObject draggableObject;
 
     private LayerMask groundLayer;
-
+    public float groundCheckDistance = 0.5f; // Varsayılan olarak 0.5 birim
     public GameObject groundCheck;
 
     bool facingRight;
@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
     {
         PreventInfiniteJump();
         MovementWhileDragging();
+        isGrounded = Physics.Raycast(transform.position, -Vector3.up, groundCheckDistance, groundLayer);
         Jump();
         if (dragControl.IsPickedUp && transform.position.x > draggableObject.transform.position.x && facingRight )
         {
