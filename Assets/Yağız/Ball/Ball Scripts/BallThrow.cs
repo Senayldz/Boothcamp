@@ -24,6 +24,8 @@ public class BallThrow : MonoBehaviour
     void Start()
     {
         readyToThrow = true;
+        playeranim.SetBool("isThrow", true);
+
         playercontrol = GetComponent<PlayerController>();
         playeranim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
@@ -34,7 +36,7 @@ public class BallThrow : MonoBehaviour
     {
         if (Input.GetMouseButton(1) && readyToThrow )
         {
-            Throw();
+            StartCoroutine(ThrowDelay());
         }
     }
 
@@ -101,6 +103,8 @@ public class BallThrow : MonoBehaviour
     {
         yield return new WaitForSeconds(ThrowCooldown);
         readyToThrow = true;
+        playeranim.SetBool("isThrow", false);
+
         //Destroy(GameObject.FindWithTag("Ball"));
         GameObject obj = GameObject.FindWithTag("Ball");
         if (obj != null)
@@ -111,5 +115,10 @@ public class BallThrow : MonoBehaviour
        
 
         
+    }
+    IEnumerator ThrowDelay()
+    {
+        yield return new WaitForSeconds(1.15f);
+        Throw();
     }
 }
