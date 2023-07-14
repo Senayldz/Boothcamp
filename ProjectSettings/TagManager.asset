@@ -8,6 +8,7 @@ TagManager:
   - Draggable
   - Ball
   - ObjectPool
+  - isFalling
   layers:
   - Default
   - TransparentFX

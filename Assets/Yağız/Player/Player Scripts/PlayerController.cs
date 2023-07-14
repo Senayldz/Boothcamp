@@ -65,6 +65,10 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
+        if (playerAnim.GetBool("isFall"))
+        {
+            playerRb.drag = 2.0f; 
+        }
     }
 
 
@@ -142,6 +146,20 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    
+    private void OnCollisionEnter(Collision collision)
+    {       
 
-}
+            if (isGrounded == true)
+            {
+                playerAnim.SetBool("isFall", false);
+
+            }
+            else
+            {
+                playerAnim.SetBool("isFall", true);
+            }
+        }
+
+    }
+
+
