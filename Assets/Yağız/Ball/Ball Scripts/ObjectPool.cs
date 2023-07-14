@@ -7,7 +7,7 @@ public class ObjectPool : MonoBehaviour
     public static ObjectPool instance;
 
     private List<GameObject> pooledObjects = new List<GameObject>();
-    private int amountToPool = 2;
+    private int amountToPool = 1;
 
     [SerializeField] GameObject magicBall;
     private void Awake()

@@ -20,7 +20,10 @@ public class PlayerController : MonoBehaviour
     public float moveX;
     public bool FacingRight { get { return facingRight; } }
     bool isGrounded;
-    
+    bool isFlip;
+
+    BallThrowController ballthrow;
+
 
     Collider[] groundcollision;
 
@@ -39,9 +42,11 @@ public class PlayerController : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
         dragControl = GetComponent<PlayerDragController>();
+        ballthrow = GetComponent<BallThrowController>();
         draggableObject = GameObject.FindGameObjectWithTag("Draggable");
         facingRight = true;
         isGrounded = true;
+        isFlip = true;
 
     }
 
@@ -56,7 +61,7 @@ public class PlayerController : MonoBehaviour
         MovementWhileDragging();
         isGrounded = Physics.Raycast(transform.position, -Vector3.up, groundCheckDistance, groundLayer);
         Jump();
-        if (dragControl.IsPickedUp && transform.position.x > draggableObject.transform.position.x && facingRight )
+        if (dragControl.IsPickedUp && transform.position.x > draggableObject.transform.position.x && facingRight)
         {
             Flip();
         }
@@ -67,7 +72,7 @@ public class PlayerController : MonoBehaviour
         }
         if (playerAnim.GetBool("isFall"))
         {
-            playerRb.drag = 2.0f; 
+            playerRb.drag = 2.0f;
         }
     }
 
@@ -106,11 +111,15 @@ public class PlayerController : MonoBehaviour
 
     public void Flip()
     {
-        facingRight = !facingRight;
+        if (isFlip)
+        {
+            facingRight = !facingRight;
 
-        Vector3 playerScale = transform.localScale;
-        playerScale.z *= -1;
-        transform.localScale = playerScale;
+            Vector3 playerScale = transform.localScale;
+            playerScale.z *= -1;
+            transform.localScale = playerScale;
+
+        }
     }
 
     void PreventInfiniteJump()
@@ -132,34 +141,49 @@ public class PlayerController : MonoBehaviour
         if (dragControl.IsPickedUp)
         {
             playerRb.constraints = RigidbodyConstraints.FreezeAll;
+
         }
+        else if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Throw"))
+        {
+            playerRb.constraints = RigidbodyConstraints.FreezeAll;
+            isFlip = false;
+            Invoke("BackToFlip", 1.6f);
+
+            
+        }
+       
         else
         {
             playerRb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 
         }
+        
+    }
+    void BackToFlip()
+    {
+        isFlip = true;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.transform.position, groundCheckRadius);
-        
+
     }
 
     private void OnCollisionEnter(Collision collision)
-    {       
+    {
 
-            if (isGrounded == true)
-            {
-                playerAnim.SetBool("isFall", false);
+        if (isGrounded == true)
+        {
+            playerAnim.SetBool("isFall", false);
 
-            }
-            else
-            {
-                playerAnim.SetBool("isFall", true);
-            }
         }
-
+        else
+        {
+            playerAnim.SetBool("isFall", true);
+        }
     }
+
+}
 
 
