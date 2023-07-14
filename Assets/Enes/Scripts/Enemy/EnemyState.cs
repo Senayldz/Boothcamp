@@ -10,5 +10,5 @@ public class EnemyState : MonoBehaviour
         Attack
     }
 
-    public State state = State.Patrol;
+    public State currentState = State.Patrol;
 }
