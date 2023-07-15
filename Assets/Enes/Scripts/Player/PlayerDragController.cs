@@ -6,6 +6,7 @@ public class PlayerDragController : MonoBehaviour
     [SerializeField] private float dragForce;
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float slideSpeed;
+    [SerializeField] private GameObject uiPanel;
 
     private Camera mainCam;
 
@@ -23,6 +24,7 @@ public class PlayerDragController : MonoBehaviour
         mainCam = Camera.main;
         draggableLayer = LayerMask.GetMask("Draggable");
         playerAnim = GetComponent<Animator>();
+        uiPanel.SetActive(false);
     }
 
     private void Update()
@@ -89,6 +91,7 @@ public class PlayerDragController : MonoBehaviour
             isPickedUp = true;
 
             playerAnim.SetTrigger("dragStart");
+            uiPanel.SetActive(true);
         }
         else
         {
@@ -105,6 +108,7 @@ public class PlayerDragController : MonoBehaviour
         playerAnim.SetTrigger("dragFinish");
         heldObject = null;
         isPickedUp = false;
+        uiPanel.SetActive(false);
     }
 
     private void MoveObject()
