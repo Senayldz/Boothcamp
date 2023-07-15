@@ -111,6 +111,6 @@ public class PlayerDragController : MonoBehaviour
 
     private void RotateObject(int direction)
     {
-        heldObject.transform.Rotate(Vector3.forward * rotateSpeed * Time.deltaTime * direction);
+        heldObject.transform.Rotate(Vector3.right * rotateSpeed * Time.deltaTime * direction);
     }
 }
