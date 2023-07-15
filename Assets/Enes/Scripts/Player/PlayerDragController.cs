@@ -62,11 +62,11 @@ public class PlayerDragController : MonoBehaviour
                 {
                     RotateObject(-1);
                 }
-                if (Input.GetKey(KeyCode.Z))
+                if (Input.GetKey(KeyCode.C))
                 {
                     SlideObject(1);
                 }
-                if (Input.GetKey(KeyCode.C))
+                if (Input.GetKey(KeyCode.Z))
                 {
                     SlideObject(-1);
                 }
