@@ -88,6 +88,7 @@ public class PlayerDragController : MonoBehaviour
             heldObjectRb.interpolation = RigidbodyInterpolation.Interpolate;
             heldObjectRb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             heldObject = pickedObject;
+            heldObject.transform.position = new Vector3(heldObject.transform.position.x, heldObject.transform.position.y, 0);
             isPickedUp = true;
 
             playerAnim.SetTrigger("dragStart");
