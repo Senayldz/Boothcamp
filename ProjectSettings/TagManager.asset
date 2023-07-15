@@ -9,6 +9,9 @@ TagManager:
   - Ball
   - ObjectPool
   - isFalling
+  - Fall
+  - Death
+  - Skill
   layers:
   - Default
   - TransparentFX

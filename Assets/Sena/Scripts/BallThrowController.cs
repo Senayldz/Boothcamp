@@ -20,6 +20,10 @@ public class BallThrowController : MonoBehaviour
 
     Rigidbody playerRb;
 
+    
+
+    public RaycastHit hit;
+
     bool readyToThrow;
     public bool ReadyToThrow { get { return readyToThrow; } }
 
@@ -29,6 +33,7 @@ public class BallThrowController : MonoBehaviour
         playercontrol = GetComponent<PlayerController>();
         playeranim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
+        
     }
 
 
@@ -53,7 +58,7 @@ public class BallThrowController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 
-        RaycastHit hit;
+        
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
 
@@ -72,6 +77,7 @@ public class BallThrowController : MonoBehaviour
 
                 playeranim.SetBool("isThrow", false);
             }
+           
 
             yield return new WaitForSeconds(1f);
 
@@ -81,6 +87,7 @@ public class BallThrowController : MonoBehaviour
                 projectile.transform.position = attackPoint.position;
                 projectile.transform.rotation = Camera.main.transform.rotation;
                 projectile.SetActive(true);
+               
 
             }
             if ((hit.point.x > transform.position.x && !playercontrol.FacingRight) | (hit.point.x < transform.position.x && playercontrol.FacingRight))
@@ -96,7 +103,7 @@ public class BallThrowController : MonoBehaviour
             // Relative Velocity
             if (playercontrol.moveX != 0)
             {
-                projectileRb.velocity = forceToAdd + new Vector3(playercontrol.moveX * playercontrol.playerSpeed, playerRb.velocity.y, 0);
+                projectile.SetActive(false);
                 playeranim.SetBool("isThrow", false);
             }
             else
@@ -111,6 +118,13 @@ public class BallThrowController : MonoBehaviour
 
 
         }
+
+        //IEnumerator WaitToThrow()
+        //{
+
+        //    yield return new WaitForSeconds(10f);
+        //    ballCount = 2f;
+        //}
 
 
 

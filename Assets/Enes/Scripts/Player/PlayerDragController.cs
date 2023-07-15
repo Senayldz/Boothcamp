@@ -133,6 +133,8 @@ public class PlayerDragController : MonoBehaviour
     private void SlideObject(int direction)
     {
         heldObject.transform.Rotate(Vector3.up * slideSpeed * Time.deltaTime * direction);
-        
+
     }
+
+    
 }
