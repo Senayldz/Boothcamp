@@ -5,6 +5,7 @@ public class PlayerDragController : MonoBehaviour
     [Header("Drag Settings")]
     [SerializeField] private float dragForce;
     [SerializeField] private float rotateSpeed;
+    [SerializeField] private float slideSpeed;
 
     private Camera mainCam;
 
@@ -61,6 +62,14 @@ public class PlayerDragController : MonoBehaviour
                 {
                     RotateObject(-1);
                 }
+                if (Input.GetKey(KeyCode.C))
+                {
+                    SlideObject(1);
+                }
+                if (Input.GetKey(KeyCode.Z))
+                {
+                    SlideObject(-1);
+                }
             }
         }
     }
@@ -112,5 +121,9 @@ public class PlayerDragController : MonoBehaviour
     private void RotateObject(int direction)
     {
         heldObject.transform.Rotate(Vector3.right * rotateSpeed * Time.deltaTime * direction);
+    }
+    private void SlideObject(int direction)
+    {
+        heldObject.transform.Translate(Vector3.right * slideSpeed * Time.deltaTime * direction);
     }
 }
