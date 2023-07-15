@@ -21,7 +21,7 @@ public class BallThrowController : MonoBehaviour
     Rigidbody playerRb;
 
     bool readyToThrow;
-    public bool ReadyToThrow { get { return readyToThrow; } }
+
     void Start()
     {
         readyToThrow = true;
@@ -93,7 +93,6 @@ public class BallThrowController : MonoBehaviour
             if (playercontrol.moveX != 0)
             {
                 projectileRb.velocity = forceToAdd + new Vector3(playercontrol.moveX * playercontrol.playerSpeed, playerRb.velocity.y, 0);
-                projectile.SetActive(false);
                 playeranim.SetBool("isThrow", false);
             }
             else

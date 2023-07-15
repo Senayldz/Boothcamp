@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody playerRb;
 
     PlayerDragController dragControl;
+    bool isDead = true;
 
     private void Awake()
     {
@@ -79,6 +80,10 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
+        if (!isDead)
+        {
+            return;
+        }
         moveX = Input.GetAxis("Horizontal");
         playerAnim.SetFloat("speed", Mathf.Abs(moveX));
 
@@ -98,6 +103,10 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
+        if (!isDead)
+        {
+            return;
+        }
 
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
@@ -111,6 +120,10 @@ public class PlayerController : MonoBehaviour
 
     public void Flip()
     {
+        if(!isDead || playerAnim.GetBool("Death"))
+        {
+            return;
+        }
         if (isFlip)
         {
             facingRight = !facingRight;
@@ -149,15 +162,15 @@ public class PlayerController : MonoBehaviour
             isFlip = false;
             Invoke("BackToFlip", 1.6f);
 
-            
+
         }
-       
+
         else
         {
             playerRb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 
         }
-        
+
     }
     void BackToFlip()
     {
@@ -183,7 +196,25 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetBool("isFall", true);
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Fall") && isGrounded == false)
+        {
+            playerAnim.SetBool("isFall", true);
+        }
+        if (other.CompareTag("Death"))
+        {
+            playerAnim.SetTrigger("Death");
+            LockMovement();
+        }
+    }
 
+    void LockMovement()
+    {
+        isDead = false;
+        moveX = 0;
+        playerRb.velocity = Vector3.zero;
+    }
 }
 
 
