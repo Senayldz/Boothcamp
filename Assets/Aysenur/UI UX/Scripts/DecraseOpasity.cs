@@ -12,6 +12,9 @@ public class DecraseOpasity : MonoBehaviour
     private int count = 2;
     private int timer = 10;
     private bool opacityDecreased = false;
+    bool ThrowingCD;
+
+    BallThrowController ballthrow;
 
     private Color originalColor;
     private Color targetColor = new Color(1f, 1f, 1f, 0.1f);
@@ -23,15 +26,20 @@ public class DecraseOpasity : MonoBehaviour
         originalColor = timeimage.color;
         timeText.text = "";
         _counttext.text = count.ToString();
+        ballthrow = GameObject.FindGameObjectWithTag("Player").GetComponent<BallThrowController>();
+        ThrowingCD = true;
+        
     }
 
     private void Update()
     {
         if (count > 0)
         {
-            if (Input.GetMouseButtonDown(1))
+            if (!ballthrow.ReadyToThrow && ThrowingCD )
             {
                 count--;
+                ThrowingCD = false;
+                StartCoroutine(CooldownTimer());
                 _counttext.text = count.ToString();
 
                 if (count == 0 && !opacityDecreased)
@@ -92,7 +100,12 @@ public class DecraseOpasity : MonoBehaviour
 
         timeText.text = "";
     }
-    
+    IEnumerator CooldownTimer()
+    {
+        yield return new WaitForSeconds(1f + ballthrow.ThrowCooldown);
+        ThrowingCD = true;
+    }
+
 }
     
 

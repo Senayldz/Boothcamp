@@ -9,7 +9,7 @@ public class BallThrowController : MonoBehaviour
     [SerializeField] Transform attackPoint;
     [SerializeField] GameObject objectToThrow;
 
-    [SerializeField] float ThrowCooldown;
+    public float ThrowCooldown;
     [SerializeField] float ThrowForce;
     [SerializeField] float ThrowUpwardForce;
     [SerializeField] float offsetY = 0.085f;
@@ -21,6 +21,7 @@ public class BallThrowController : MonoBehaviour
     Rigidbody playerRb;
 
     bool readyToThrow;
+    public bool ReadyToThrow { get { return readyToThrow; } }
 
     void Start()
     {
@@ -64,6 +65,7 @@ public class BallThrowController : MonoBehaviour
             {
 
                 playeranim.SetBool("isThrow", true);
+
             }
             if ((hit.point.x > transform.position.x && !playercontrol.FacingRight) | (hit.point.x < transform.position.x && playercontrol.FacingRight))
             {
@@ -79,14 +81,16 @@ public class BallThrowController : MonoBehaviour
                 projectile.transform.position = attackPoint.position;
                 projectile.transform.rotation = Camera.main.transform.rotation;
                 projectile.SetActive(true);
+
             }
             if ((hit.point.x > transform.position.x && !playercontrol.FacingRight) | (hit.point.x < transform.position.x && playercontrol.FacingRight))
             {
                 projectile.SetActive(false);
 
             }
-            Vector3 forceToAdd = forceDirection * ThrowForce;
 
+
+            Vector3 forceToAdd = forceDirection * ThrowForce;
 
 
             // Relative Velocity
@@ -97,7 +101,11 @@ public class BallThrowController : MonoBehaviour
             }
             else
             {
+
+
                 projectileRb.velocity = forceToAdd;
+
+
             }
 
 
