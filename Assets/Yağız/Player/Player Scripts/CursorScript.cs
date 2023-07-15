@@ -47,12 +47,7 @@ public class CursorScript : MonoBehaviour
             {
                 Cursor.SetCursor(cursorTextureError, hotSpotError, mode);
             }
-            if (playercontrol.moveX != 0 && Input.GetMouseButton(1))
-            {
-                Cursor.SetCursor(cursorTextureError, hotSpotError, mode);
-            }
         }
-       
     }
 
 
