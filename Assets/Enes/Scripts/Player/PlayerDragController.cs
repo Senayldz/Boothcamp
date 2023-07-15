@@ -16,7 +16,7 @@ public class PlayerDragController : MonoBehaviour
     private Rigidbody heldObjectRb;
 
     private LayerMask draggableLayer;
-
+    public float rotationSpeed = 10f;
     private bool isPickedUp;
     public bool IsPickedUp { get { return isPickedUp; } }
     private void Awake()
@@ -131,6 +131,7 @@ public class PlayerDragController : MonoBehaviour
     }
     private void SlideObject(int direction)
     {
-        heldObject.transform.Translate(Vector3.right * slideSpeed * Time.deltaTime * direction);
+        heldObject.transform.Rotate(Vector3.up * slideSpeed * Time.deltaTime * direction);
+        
     }
 }
