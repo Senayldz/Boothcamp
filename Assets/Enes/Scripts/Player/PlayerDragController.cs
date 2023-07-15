@@ -27,6 +27,7 @@ public class PlayerDragController : MonoBehaviour
 
     private void Update()
     {
+        
         if (Input.GetMouseButtonDown(0))
         {
             // Is an object currently being hold?
@@ -82,6 +83,8 @@ public class PlayerDragController : MonoBehaviour
             heldObjectRb.useGravity = false;
             heldObjectRb.drag = 10;
             heldObjectRb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+            heldObjectRb.interpolation = RigidbodyInterpolation.Interpolate;
+            heldObjectRb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             heldObject = pickedObject;
             isPickedUp = true;
 
