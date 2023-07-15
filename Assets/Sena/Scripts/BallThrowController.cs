@@ -15,6 +15,7 @@ public class BallThrowController : MonoBehaviour
     [SerializeField] float offsetY = 0.085f;
 
     PlayerController playercontrol;
+    DecraseOpasity ballCd;
 
     Animator playeranim;
 
@@ -27,12 +28,16 @@ public class BallThrowController : MonoBehaviour
     bool readyToThrow;
     public bool ReadyToThrow { get { return readyToThrow; } }
 
+    bool avoidThrow;
+    public bool AvoidThrow { get { return avoidThrow; } }
+
     void Start()
     {
         readyToThrow = true;
         playercontrol = GetComponent<PlayerController>();
         playeranim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
+        ballCd = GameObject.FindGameObjectWithTag("Skill").GetComponent<DecraseOpasity>();
         
     }
 
@@ -70,31 +75,51 @@ public class BallThrowController : MonoBehaviour
             {
 
                 playeranim.SetBool("isThrow", true);
+                
 
             }
             if ((hit.point.x > transform.position.x && !playercontrol.FacingRight) | (hit.point.x < transform.position.x && playercontrol.FacingRight))
             {
 
                 playeranim.SetBool("isThrow", false);
+                
             }
-           
+            if (ballCd.count <= 0)
+            {
+                projectile.SetActive(false);
+                ballCd.count = 0;
+                playeranim.SetBool("isThrow", false);
+                avoidThrow = true;
+
+            }
+            else
+            {
+                avoidThrow = false;
+            }
+
+
 
             yield return new WaitForSeconds(1f);
 
-
-            if (projectile != null)
+            
+            if (projectile != null && !avoidThrow)
             {
                 projectile.transform.position = attackPoint.position;
                 projectile.transform.rotation = Camera.main.transform.rotation;
                 projectile.SetActive(true);
+                
                
 
             }
             if ((hit.point.x > transform.position.x && !playercontrol.FacingRight) | (hit.point.x < transform.position.x && playercontrol.FacingRight))
             {
+                
                 projectile.SetActive(false);
+                
 
             }
+            
+           
 
 
             Vector3 forceToAdd = forceDirection * ThrowForce;
@@ -119,12 +144,7 @@ public class BallThrowController : MonoBehaviour
 
         }
 
-        //IEnumerator WaitToThrow()
-        //{
-
-        //    yield return new WaitForSeconds(10f);
-        //    ballCount = 2f;
-        //}
+      
 
 
 

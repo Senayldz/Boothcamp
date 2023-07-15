@@ -9,7 +9,7 @@ public class DecraseOpasity : MonoBehaviour
     [SerializeField] private Image timeimage;
     [SerializeField] private TMP_Text timeText;
     [SerializeField] private TMP_Text _counttext;
-    private int count = 2;
+    public int count = 2;
     private int timer = 10;
     private bool opacityDecreased = false;
     bool ThrowingCD;
@@ -35,9 +35,12 @@ public class DecraseOpasity : MonoBehaviour
 
     private void Update()
     {
+        
         if (count > 0)
         {
-            if (!ballthrow.ReadyToThrow && ThrowingCD && ballthrow.hit.point.x > ballthrow.transform.position.x && playercontrol.moveX ==0 )
+            if (!ballthrow.ReadyToThrow && ThrowingCD && 
+                (ballthrow.hit.point.x > ballthrow.transform.position.x && playercontrol.FacingRight || ballthrow.hit.point.x < ballthrow.transform.position.x && !playercontrol.FacingRight)
+                && playercontrol.moveX ==0 )
             {
                 ThrowingCD = false;
                 StartCoroutine(CooldownTimer());

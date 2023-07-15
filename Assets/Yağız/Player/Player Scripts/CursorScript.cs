@@ -14,10 +14,12 @@ public class CursorScript : MonoBehaviour
     private Vector2 hotSpotError;
 
     PlayerController playercontrol;
+    BallThrowController ballthrow;
 
     private void Start()
     {
         playercontrol = GetComponent<PlayerController>();
+        ballthrow = GetComponent<BallThrowController>();
         hotSpotNormal = new Vector2(cursorTextureNormal.width / 2, cursorTextureNormal.height / 2);
         hotSpotDrag = new Vector2(cursorTextureDrag.width / 2, cursorTextureDrag.height / 2);
         hotSpotError = new Vector2(cursorTextureError.width / 2, cursorTextureError.height / 2);
@@ -48,6 +50,10 @@ public class CursorScript : MonoBehaviour
                 Cursor.SetCursor(cursorTextureError, hotSpotError, mode);
             }
             if (playercontrol.moveX !=0 && Input.GetMouseButton(1))
+            {
+                Cursor.SetCursor(cursorTextureError, hotSpotError, mode);
+            }
+            if (ballthrow.AvoidThrow && Input.GetMouseButton(1))
             {
                 Cursor.SetCursor(cursorTextureError, hotSpotError, mode);
             }
