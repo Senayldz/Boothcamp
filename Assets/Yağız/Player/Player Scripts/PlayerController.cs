@@ -12,6 +12,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] float groundCheckRadius;
     [SerializeField] float turnSpeed;
+    
+    
+    public int maxHealth = 100;
+    public int currentHealth;
+    public HealthBar healthBar;
 
     private GameObject draggableObject;
 
@@ -63,6 +68,9 @@ public class PlayerController : MonoBehaviour
         isGrounded = true;
         isFlip = true;
         deadCooldown = 0;
+        
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
 
     }
 
@@ -93,11 +101,24 @@ public class PlayerController : MonoBehaviour
         if (playerAnim.GetBool("isFall"))
         {
             playerRb.drag = 2.0f;
+            
+            
         }
-        if (!isDead && deadCooldown<=0)
+
+        if (!isDead)
+        {
+            TakeDamage(5);
+        }
+            if (!isDead && deadCooldown<=0)
           {
+              
               SceneManager.LoadScene(2);
           }
+        void TakeDamage(int damage)
+        {
+            currentHealth -= damage;
+            healthBar.SetHealth(currentHealth);
+        }
     }
 
     private void OnDisable()
