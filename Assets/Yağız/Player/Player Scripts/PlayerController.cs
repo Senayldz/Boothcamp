@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     PlayerDragController dragControl;
     bool isDead = true;
+    private float deadCooldown;
 
     private void Awake()
     {
@@ -48,6 +51,7 @@ public class PlayerController : MonoBehaviour
         facingRight = true;
         isGrounded = true;
         isFlip = true;
+        deadCooldown = 0;
 
     }
 
@@ -58,6 +62,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        deadCooldown -= Time.deltaTime;
+        
         PreventInfiniteJump();
         MovementWhileDragging();
         isGrounded = Physics.Raycast(transform.position, -Vector3.up, groundCheckDistance, groundLayer);
@@ -75,6 +81,10 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.drag = 2.0f;
         }
+        if (!isDead && deadCooldown<=0)
+          {
+              SceneManager.LoadScene(2);
+          }
     }
 
 
@@ -214,6 +224,7 @@ public class PlayerController : MonoBehaviour
         isDead = false;
         moveX = 0;
         playerRb.velocity = Vector3.zero;
+        deadCooldown = 4;
     }
 }
 
