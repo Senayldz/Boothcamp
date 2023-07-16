@@ -22,4 +22,13 @@ public class NewLevel : MonoBehaviour
         Debug.Log("QUIT");
         Application.Quit();
     }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void NewGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+    
 }
