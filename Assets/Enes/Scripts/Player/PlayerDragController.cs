@@ -8,6 +8,7 @@ public class PlayerDragController : MonoBehaviour
     [SerializeField] private float slideSpeed;
     [SerializeField] private float spinSpeed;
     [SerializeField] private GameObject uiPanel;
+    [SerializeField] private GameObject uiCameraControl;
 
     private Camera mainCam;
 
@@ -26,6 +27,7 @@ public class PlayerDragController : MonoBehaviour
         draggableLayer = LayerMask.GetMask("Draggable");
         playerAnim = GetComponent<Animator>();
         uiPanel.SetActive(false);
+        uiCameraControl.SetActive(false);
     }
 
     private void Update()
@@ -133,6 +135,15 @@ public class PlayerDragController : MonoBehaviour
             Vector3 moveDirection = mouseWorldPosition - heldObject.transform.position;
             heldObjectRb.AddForce(moveDirection * dragForce * Time.deltaTime);
         }
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Button"))
+        {
+            uiCameraControl.SetActive(true);
+        }
+        
     }
 
     private void RotateObject(int direction)

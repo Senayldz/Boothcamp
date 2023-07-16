@@ -12,6 +12,7 @@ TagManager:
   - Fall
   - Death
   - Skill
+  - Button
   layers:
   - Default
   - TransparentFX
