@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -34,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
     PlayerDragController dragControl;
     bool isDead = true;
+    private float deadCooldown;
 
     [SerializeField] CinemachineVirtualCamera rightCam;
     [SerializeField] CinemachineVirtualCamera topDownCam;
@@ -58,6 +62,7 @@ public class PlayerController : MonoBehaviour
         facingRight = true;
         isGrounded = true;
         isFlip = true;
+        deadCooldown = 0;
 
     }
 
@@ -67,7 +72,10 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update()
+
     {  
+        deadCooldown -= Time.deltaTime;
+        
         PreventInfiniteJump();
         MovementWhileDragging();
         CamChange();
@@ -86,6 +94,10 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.drag = 2.0f;
         }
+        if (!isDead && deadCooldown<=0)
+          {
+              SceneManager.LoadScene(2);
+          }
     }
 
     private void OnDisable()
@@ -231,6 +243,7 @@ public class PlayerController : MonoBehaviour
         isDead = false;
         moveX = 0;
         playerRb.velocity = Vector3.zero;
+        deadCooldown = 4;
     }
     void CamChange()
     {
