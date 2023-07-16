@@ -1,48 +1,55 @@
-using System;
-using System.Net.Http.Headers;
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyController : EnemyState
 {
-    public bool draw;
-
     [Header("Navigation")]
     [SerializeField] private float[] patrolPoints;
     [SerializeField] private float detectRange;
     [SerializeField] private float movementDelay;
     [SerializeField] private float minDistance2Player;
+    [SerializeField] private float aggroDistance;
 
     [Header("Attributes")]
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
+    [SerializeField] private float currentHealth;
 
     [Header("Chase")]
-    [SerializeField] private float aggroDistance = 5f;
-
-
+    [SerializeField] private GameObject playerObject;
     
-    private float movementDelayTimer = 0f;
-    private int patrolPointsIndex = 0;
-    private bool isAttackAnimPlaying;
+    [Header("UI")]
+    [SerializeField] private Image healthBar;
 
     // Components
     private MouthDetector mouthDetector;
     private GameObject playerGO;
     private NavMeshAgent agent;
     private LayerMask playerLayer;
-    private BoxCollider enemyCollider;
+    private BoxCollider boxCollider;
     private Animator animator;
+
+    private float movementDelayTimer = 0f;
+    private float imageHealthRatio;
+    private int patrolPointsIndex = 0;
+    private bool isAttackAnimPlaying;
+    private bool isDeathAnimPlaying;
+    private bool isAlreadyWorking;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         playerLayer = LayerMask.GetMask("Player");
-        enemyCollider = GetComponent<BoxCollider>(); 
+        boxCollider = GetComponent<BoxCollider>(); 
         animator = GetComponent<Animator>();
         mouthDetector = GetComponentInChildren<MouthDetector>();
+
+        float healthBarMaxFillAmount = 1;
+
+        imageHealthRatio = healthBarMaxFillAmount / currentHealth;
     }
 
     private void OnEnable()
@@ -55,17 +62,6 @@ public class EnemyController : EnemyState
     {
         mouthDetector.onTriggerEnter -= OnMouthTriggerEnter;
         mouthDetector.onTriggerExit -= OnMouthTriggerExit;
-    }
-
-    private void OnMouthTriggerEnter()
-    {
-        animator.SetBool("isRunning", false);
-        currentState = State.Attack;
-    }
-
-    private void OnMouthTriggerExit()
-    {
-        currentState = State.Chase;
     }
 
     private void Start()
@@ -92,35 +88,35 @@ public class EnemyController : EnemyState
                 Debug.Log("Attack State");  
                 Attack();
                 break;
+            case State.Death:
+                Debug.Log("Death State");
+                Death();
+                break;
             default:
                 break;
         }
+        
+        if (currentHealth <= 0)
+            currentState = State.Death;
     }
 
     private void Patrol()
     {
         float tolerance = 0.1f;
-
-        Vector3 rayStartPos = transform.position;
+        agent.destination = new Vector3(patrolPoints[patrolPointsIndex], transform.position.y, transform.position.z);
         animator.SetBool("isWalking", true);
-
-        // Switch to chase state
-        if (Physics.Raycast(rayStartPos, transform.forward, out RaycastHit hit, detectRange, playerLayer))
+        
+        if (Physics.CheckSphere(transform.position, detectRange, playerLayer))
         {
-            currentState = State.Chase;
-            playerGO = hit.transform.gameObject;
+            agent.isStopped = true;
             animator.SetBool("isWaiting", false);
             animator.SetBool("isWalking", false);
-            animator.SetBool("isRunning", true);
-            agent.speed = runSpeed;
-            return;
-            
+            animator.SetTrigger("isRoar");
+            transform.LookAt(playerObject.transform);   
         }
 
-        agent.destination = new Vector3(patrolPoints[patrolPointsIndex], transform.position.y, transform.position.z);
-        
         // Has target been reached?
-        if (Equal(transform.position.x, patrolPoints[patrolPointsIndex], tolerance))
+        else if (Equal(transform.position.x, patrolPoints[patrolPointsIndex], tolerance))
         {
             animator.SetBool("isWaiting", true);
             movementDelayTimer += Time.deltaTime;
@@ -145,9 +141,8 @@ public class EnemyController : EnemyState
         animator.SetBool("isRunning", true);
 
         // If player moves away from enemy, back to patrol
-        if (Mathf.Abs(transform.position.x - playerGO.transform.position.x) > aggroDistance)
+        if (Mathf.Abs(transform.position.x - playerObject.transform.position.x) > aggroDistance)
         {
-            playerGO = null;
             animator.SetBool("isRunning", false);
             animator.SetBool("isWalking", true);
             agent.speed = walkSpeed;
@@ -157,7 +152,7 @@ public class EnemyController : EnemyState
         // Chase player
         else
         {
-            agent.destination = playerGO.transform.position;
+            agent.destination = playerObject.transform.position;
         }
     }
 
@@ -167,15 +162,81 @@ public class EnemyController : EnemyState
         isAttackAnimPlaying = true;
         animator.SetBool("isAttacking", true);
     }
+
+    private void Death()
+    {
+        if (isDeathAnimPlaying) return;
+
+        isDeathAnimPlaying = true;
+        agent.isStopped = true;
+        animator.SetTrigger("isDeath");
+    }
+    // Connected to Death Animation
+    private void ExitDeathState()
+    {
+        Destroy(this.gameObject);
+    }
     // Connected to Attack Anim
     private void ExitAttackState()
     {
         animator.SetBool("isAttacking", false);
         isAttackAnimPlaying = false;
     }
+    private void ExitPatrolState()
+    {
+        currentState = State.Chase;
+        agent.speed = runSpeed;
+        agent.isStopped = false;
+    }
+    private void OnMouthTriggerEnter()
+    {
+        animator.SetBool("isRunning", false);
+        currentState = State.Attack;
+    }
+
+    private void OnMouthTriggerExit()
+    {
+        currentState = State.Chase;
+    }
 
     private bool Equal(float a, float b, float tolerance)
     {
         return (Mathf.Abs(a - b) <= tolerance);
+    }
+
+    public void StartTakeDamage(float takenDamage)
+    {
+        StartCoroutine(TakeDamage(takenDamage));
+    }
+
+    private IEnumerator TakeDamage(float takenDamage)
+    {
+        if (isAlreadyWorking) yield break;
+
+        isAlreadyWorking = true;
+
+        float counter = 0;
+        float duration = 1f;
+
+        //Get the current life of the player
+        float startHealth = currentHealth;
+
+        //Calculate how much to lose
+        float finalHealth = currentHealth - takenDamage;
+
+        //Stores the new player life
+        float newCurrentHealth;
+
+        while (counter < duration)
+        {
+            counter += Time.deltaTime;
+            newCurrentHealth = Mathf.Lerp(startHealth, finalHealth, counter / duration);
+            healthBar.fillAmount = newCurrentHealth * imageHealthRatio;
+            currentHealth = newCurrentHealth;
+            yield return null;
+        }
+
+        isAlreadyWorking = false;
+        yield return null;
     }
 }

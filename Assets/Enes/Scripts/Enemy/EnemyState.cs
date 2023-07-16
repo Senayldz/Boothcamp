@@ -7,7 +7,8 @@ public class EnemyState : MonoBehaviour
         Idle,
         Patrol,
         Chase,
-        Attack
+        Attack,
+        Death
     }
 
     public State currentState = State.Patrol;
