@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -34,9 +35,18 @@ public class PlayerController : MonoBehaviour
     PlayerDragController dragControl;
     bool isDead = true;
 
+    [SerializeField] CinemachineVirtualCamera rightCam;
+    [SerializeField] CinemachineVirtualCamera topDownCam;
     private void Awake()
     {
         groundLayer = LayerMask.GetMask("Draggable", "Ground");
+    }
+
+    private void OnEnable()
+    {
+        CameraSwitch.Register(rightCam);
+        CameraSwitch.Register(topDownCam);
+        CameraSwitch.SwitchCamera(rightCam);
     }
     void Start()
     {
@@ -57,24 +67,31 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update()
-    {
+    {  
         PreventInfiniteJump();
         MovementWhileDragging();
+        CamChange();
         isGrounded = Physics.Raycast(transform.position, -Vector3.up, groundCheckDistance, groundLayer);
         Jump();
-        if (dragControl.IsPickedUp && transform.position.x > draggableObject.transform.position.x && facingRight)
-        {
-            Flip();
-        }
+        //if (dragControl.IsPickedUp && transform.position.x > draggableObject.transform.localPosition.x && facingRight)
+        //{
+        //    Flip();
+        //}
 
-        else if (dragControl.IsPickedUp && transform.position.x < draggableObject.transform.position.x && !facingRight)
-        {
-            Flip();
-        }
+        //else if (dragControl.IsPickedUp && transform.position.x < draggableObject.transform.localPosition.x && !facingRight)
+        //{
+        //    Flip();
+        //}
         if (playerAnim.GetBool("isFall"))
         {
             playerRb.drag = 2.0f;
         }
+    }
+
+    private void OnDisable()
+    {
+        CameraSwitch.UnRegister(rightCam);
+        CameraSwitch.UnRegister(topDownCam);
     }
 
 
@@ -214,6 +231,20 @@ public class PlayerController : MonoBehaviour
         isDead = false;
         moveX = 0;
         playerRb.velocity = Vector3.zero;
+    }
+    void CamChange()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (CameraSwitch.IsActiveCamera(rightCam))
+            {
+                CameraSwitch.SwitchCamera(topDownCam);
+            }
+            else if (CameraSwitch.IsActiveCamera(topDownCam))
+            {
+                CameraSwitch.SwitchCamera(rightCam);
+            }
+        }
     }
 }
 
