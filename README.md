@@ -106,7 +106,7 @@ Hero with Special Powers includes:
 
 ` `Overall, there is a backlog of 500 points that need to be completed throughout the project. When divided into 3 sprints, it was decided that the first sprint should start with at least 100 points.
 
-\***DAILY SCRUM:** Due to time constraints, it has been decided to conduct Daily Scrum meetings via WhatsApp. An example of a Daily Scrum meeting is shared by us in the Readme file as a JPEG or Word document [**Sprint 1 Daily Scrum Chats**](Sprint%201/DailyScrum1.docx)
+\***DAILY SCRUM:** Due to time constraints, it has been decided to conduct Daily Scrum meetings via WhatsApp. An example of a Daily Scrum meeting is shared by us in the Readme file as a JPEG or Word document [**Sprint 1 Daily Scrum Chats**](Sprint%201/DailyScrum.docx)
 **
 
 
