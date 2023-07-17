@@ -210,3 +210,58 @@ https://trello.com/b/AQu1OwCJ/bootcamp-agile-project
 **Product Backlog URL**
 https://trello.com/b/AQu1OwCJ/bootcamp-agile-project
 
+
+
+**SPRINT 3**
+
+\***THE ESTİMATED SCORE TO BE COMPLETED WITHIN THE SPRINT:** 200 Point
+
+
+\***DAILY SCRUM:** Due to time constraints, it has been decided to conduct Daily Scrum meetings via WhatsApp and Discord. An example of a Daily Scrum meeting is shared by us in the Readme file as a JPEG or Word document [**Sprint 3 Daily Scrum Chats**](Sprint%202/DailyScrum3.docx)
+**
+
+
+\***SPRINT BOARD UPDATE:** Sprint board screenshots: 
+
+` `Sprint Board Final
+![ProjectBacklog](https://github.com/Senayldz/Bootcamp/assets/120721647/9d8834be-6fa2-482e-8f55-1118cf7cc6fc)
+
+
+
+
+` `First Craft
+![CraftProjectBacklog](https://github.com/Senayldz/Bootcamp/assets/120721647/af975f0f-ae55-4044-bc8f-e2c4946d196e)
+
+
+
+
+\*** GAME STATUS: Screen Shots:**  
+![1](https://github.com/Senayldz/Bootcamp/assets/120721647/bfde09fa-2ede-4d43-86e3-12cd323bc9a5)
+![2](https://github.com/Senayldz/Bootcamp/assets/120721647/f8cd8596-96c7-4ed4-95bb-e170926a7ee1)
+![3](https://github.com/Senayldz/Bootcamp/assets/120721647/95d339fe-0d2a-40fe-8afc-8e464ca2a460)
+![4](https://github.com/Senayldz/Bootcamp/assets/120721647/9bc20f11-67b8-4c6e-a40b-154b57d0b115)
+![5](https://github.com/Senayldz/Bootcamp/assets/120721647/d3658c9d-ce7b-492f-9134-b697ae122fa0)
+
+**SPRINT REVİEW:** The optimization problem is still ongoing, and efforts will continue to be made to find a solution for it. Due to some conflicts, a "test3" branch was created in the project to continue development within that branch.
+Sprint Review participants:Enes Yaz,Yağız Türk,Sena Yıldız,Hazar Karayaman,Ayşenur Turan
+
+**SPRINT RETROSPECTIVE:**
+
+- "It was observed that all team members contributed to the project by allocating additional time, which accelerated the progress."
+- "Some issues have made Scrum management more challenging, but increasing the frequency of team meetings helped in resolving the problems."
+- "The team's inability to maintain adequate communication led to prolonged conflict resolution processes. Measures have been taken to address this issue."
+- "In the last 1.5 weeks, work was accelerated to make up for lost time, and the team, working in great harmony, has successfully completed their tasks."
+  
+**SPRINT NOTES**:
+
+- In backlog;
+
+**Platform Colors In The Backlog:** distinguishing which the team member did.
+
+**The Title Colors**: describe the theme of the sprints, while
+
+- Sprints were drafted on **Github Project**/Branch:Test3. In the next stage, it was transferred to **Trello** and continued to be studied.
+
+**Product Backlog URL**
+https://trello.com/b/AQu1OwCJ/bootcamp-agile-project
+
