@@ -161,6 +161,9 @@ https://trello.com/b/AQu1OwCJ/bootcamp-agile-project
 **SPRINT 2**
 
 \***THE ESTİMATED SCORE TO BE COMPLETED WITHIN THE SPRINT:** 200 Point
+\***THE LOGIC OF COMPLETING POINTS/SCORES:** With the logic of Tshirt size
+
+` `Overall, there is a backlog of 500 points that need to be completed throughout the project. When divided into 3 sprints, it was decided that the second sprint should continue with at least 200 points.
 
 
 \***DAILY SCRUM:** Due to time constraints, it has been decided to conduct Daily Scrum meetings via WhatsApp and Discord. An example of a Daily Scrum meeting is shared by us in the Readme file as a JPEG or Word document [**Sprint 2 Daily Scrum Chats**](Sprint%202/DailyScrum2.docx)
@@ -215,6 +218,9 @@ https://trello.com/b/AQu1OwCJ/bootcamp-agile-project
 **SPRINT 3**
 
 \***THE ESTİMATED SCORE TO BE COMPLETED WITHIN THE SPRINT:** 200 Point
+\***THE LOGIC OF COMPLETING POINTS/SCORES:** With the logic of Tshirt size
+
+` `Overall, there is a backlog of 500 points that need to be completed throughout the project. When divided into 3 sprints, it was decided that the third sprint should continue with at least 200 points.
 
 
 \***DAILY SCRUM:** Due to time constraints, it has been decided to conduct Daily Scrum meetings via WhatsApp and Discord. An example of a Daily Scrum meeting is shared by us in the Readme file as a JPEG or Word document [**Sprint 3 Daily Scrum Chats**](Sprint%203/DailyScrum3.docx)
