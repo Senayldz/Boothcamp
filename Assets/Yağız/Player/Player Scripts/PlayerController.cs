@@ -117,11 +117,13 @@ public class PlayerController : MonoBehaviour
               
               SceneManager.LoadScene(2);
           }
-        void TakeDamage(int damage)
-        {
-            currentHealth -= damage;
-            healthBar.SetHealth(currentHealth);
-        }
+        
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
     }
 
     private void OnDisable()

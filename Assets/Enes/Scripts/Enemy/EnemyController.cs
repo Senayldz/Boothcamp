@@ -161,6 +161,7 @@ public class EnemyController : EnemyState
         if (isAttackAnimPlaying) return;
         isAttackAnimPlaying = true;
         animator.SetBool("isAttacking", true);
+        playerObject.GetComponent<PlayerController>().TakeDamage(20);
     }
 
     private void Death()
