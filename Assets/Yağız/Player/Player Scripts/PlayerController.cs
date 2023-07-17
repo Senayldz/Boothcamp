@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    SoundManager soundManager;
     public float playerSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] float groundCheckRadius;
@@ -59,6 +60,8 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
+
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
         dragControl = GetComponent<PlayerDragController>();
@@ -132,6 +135,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isDead)
         {
+            soundManager.DeathSound();
             return;
         }
         moveX = Input.GetAxis("Horizontal");
@@ -155,6 +159,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isDead)
         {
+            soundManager.DeathSound();
             return;
         }
 
@@ -162,7 +167,7 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.velocity = new Vector3(playerRb.velocity.x, jumpForce, 0);
 
-
+            soundManager.JumpSound();
         }
         playerAnim.SetBool("grounded", isGrounded);
 
@@ -172,6 +177,7 @@ public class PlayerController : MonoBehaviour
     {
         if(!isDead || playerAnim.GetBool("Death"))
         {
+            soundManager.DeathSound();
             return;
         }
         if (isFlip)
