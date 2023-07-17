@@ -117,11 +117,13 @@ public class PlayerController : MonoBehaviour
               
               SceneManager.LoadScene(2);
           }
-        void TakeDamage(int damage)
-        {
-            currentHealth -= damage;
-            healthBar.SetHealth(currentHealth);
-        }
+        
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
     }
 
     private void OnDisable()
@@ -129,7 +131,6 @@ public class PlayerController : MonoBehaviour
         CameraSwitch.UnRegister(rightCam);
         CameraSwitch.UnRegister(topDownCam);
     }
-
 
     void Movement()
     {
