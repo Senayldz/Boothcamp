@@ -143,6 +143,10 @@ public class PlayerDragController : MonoBehaviour
         {
             uiCameraControl.SetActive(true);
         }
+        else
+        {
+            uiCameraControl.SetActive(false);
+        }
         
     }
 

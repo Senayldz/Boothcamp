@@ -1695,7 +1695,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 275, y: -160.6}
+  m_AnchoredPosition: {x: 106.5, y: -160.6}
   m_SizeDelta: {x: 700, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &660680264
@@ -1718,8 +1718,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ya\u011F\u0131z T\xDCRK\nSena YILDIZ\nEnes YAZ\nHazar KARAYAMAN \nAy\u015Fenur
-    TURAN"
+  m_text: 'Yugen - Emotional Ethnic Music by Keys of Moon | https://soundcloud.com/keysofmoon
+
+    Attribution
+    4.0 International (CC BY 4.0)
+
+    https://creativecommons.org/licenses/by/4.0/
+
+    Music
+    promoted by https://www.chosic.com/free-music/all/'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 317d37f59bf1c7e45adb1a0089723a9e, type: 2}
   m_sharedMaterial: {fileID: -2679751173466539364, guid: 317d37f59bf1c7e45adb1a0089723a9e, type: 2}
@@ -3059,7 +3066,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 750, y: -500}
+  m_AnchoredPosition: {x: 750, y: -704.1}
   m_SizeDelta: {x: 150, y: 80}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1243337127
@@ -4242,9 +4249,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Developers
-
-'
+  m_text: Musics
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0c425fcbba2aabf41b7b032d9fbc500f, type: 2}
   m_sharedMaterial: {fileID: -6267496646342244530, guid: 0c425fcbba2aabf41b7b032d9fbc500f, type: 2}

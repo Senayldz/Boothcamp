@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Aysenur/Scenes/GameOverScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Aysenur/Scenes/Win.unity
+    guid: 46bfa0ed43e53e745b5c1ff4e44ec303
   m_configObjects: {}
